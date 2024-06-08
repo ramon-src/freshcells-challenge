@@ -1,24 +1,25 @@
-import { useMutation } from "@apollo/client";
 import { useState } from "react";
-import { LOGIN } from "../service/graphql/mutations/login";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../services/providers/auth/auth-provider";
 
-function Login(): React.ReactElement {
-  const [login, { data, loading, error }] = useMutation(LOGIN);
+function AuthPage(): React.ReactElement {
+  const { isAuthenticated, login, isAuthenticating } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
-  function onSubmit(e: any) {
+  const onSubmit = async (e: any) => {
     e.preventDefault();
-    login({ variables: { email, password } });
-  }
+    await login(email, password);
+    if (isAuthenticated) {
+      // TODO: it is not redirecting at the first time
+      navigate("/");
+    }
+  };
 
-  if (data) {
-    localStorage.setItem("token", data.login.jwt);
-  }
+  if (isAuthenticating) return <div>Submitting...</div>;
 
-  if (loading) return <div>Submitting...</div>;
-
-  if (error) return <div>Submission error! {error.message}</div>;
+  // if (error) return <div>Submission error! {error.message}</div>;
 
   return (
     <div>
@@ -46,4 +47,4 @@ function Login(): React.ReactElement {
   );
 }
 
-export default Login;
+export default AuthPage;
