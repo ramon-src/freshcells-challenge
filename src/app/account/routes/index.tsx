@@ -1,8 +1,10 @@
+import ProtectedRoute from "../../auth/hocs/ProtectedRoute";
 import AccountPage from "../pages/AccountPage";
 
 const router = {
   path: "/account",
-  element: <AccountPage />,
+  index: true,
+  element: <ProtectedRoute element={<AccountPage />} />,
 };
 
 export default router;

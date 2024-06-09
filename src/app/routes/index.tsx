@@ -1,10 +1,10 @@
-import { default as AuthWrapper } from "../AuthWrapper";
+import App from "../App";
 import accountRouter from "../account/routes";
 import ErrorPage from "../pages/ErrorPage";
 
 const router = {
   path: "/",
-  element: <AuthWrapper />,
+  element: <App />,
   errorElement: <ErrorPage />,
   children: [
     {

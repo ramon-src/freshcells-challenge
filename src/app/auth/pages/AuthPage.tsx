@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../services/providers/auth/auth-provider";
+import { useAuth } from "../../../services/providers/auth/auth-provider";
 
 function AuthPage(): React.ReactElement {
   const { isAuthenticated, login, isAuthenticating } = useAuth();
@@ -11,13 +11,13 @@ function AuthPage(): React.ReactElement {
   const onSubmit = async (e: any) => {
     e.preventDefault();
     await login(email, password);
-    if (isAuthenticated) {
-      // TODO: it is not redirecting at the first time
-      navigate("/");
-    }
   };
 
   if (isAuthenticating) return <div>Submitting...</div>;
+
+  if (isAuthenticated) {
+    navigate("/");
+  }
 
   // if (error) return <div>Submission error! {error.message}</div>;
 

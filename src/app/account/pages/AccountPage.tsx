@@ -2,6 +2,7 @@ import { useAuth } from "../../../services/providers/auth/auth-provider";
 
 function AccountPage(): React.ReactElement {
   const { logout } = useAuth();
+
   return (
     <div>
       AccountPage
