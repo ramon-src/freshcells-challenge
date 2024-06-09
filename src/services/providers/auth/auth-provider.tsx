@@ -4,6 +4,7 @@ import {
   useCallback,
   useContext,
   useEffect,
+  useMemo,
   useState,
 } from "react";
 import { LOGIN } from "../../graphql/mutations/login";
@@ -22,7 +23,7 @@ const AuthContext = createContext<AuthContextType>({
   logout: () => {},
 });
 
-export const useAuth = () => useContext(AuthContext);
+export const useAuth = (): AuthContextType => useContext(AuthContext);
 
 type AuthProviderProps = {
   children: React.ReactNode;
@@ -30,6 +31,7 @@ type AuthProviderProps = {
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [signIn, { data, loading, error }] = useMutation(LOGIN);
+
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isAuthenticating, setAuthenticationLoading] = useState(true);
 
@@ -53,6 +55,25 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     setAuthenticationLoading(false);
   }, [getToken]);
 
+  const login = useCallback(
+    async (email: string, password: string) => {
+      setAuthenticationLoading(true);
+      try {
+        await signIn({ variables: { email, password } });
+      } catch (error) {
+        console.error(error);
+        setAuthenticationLoading(false);
+      }
+      setAuthenticationLoading(false);
+    },
+    [signIn]
+  );
+
+  const logout = useCallback(() => {
+    localStorage.removeItem("token");
+    setIsAuthenticated(false);
+  }, [setIsAuthenticated]);
+
   useEffect(() => {
     verifyTokenExists();
   }, [verifyTokenExists]);
@@ -63,24 +84,17 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     }
   }, [data?.login?.jwt, setToken]);
 
-  const login = async (email: string, password: string) => {
-    try {
-      await signIn({ variables: { email, password } });
-    } catch (err) {
-      console.error("Login failed:", err);
-    }
-  };
-
-  const logout = () => {
-    localStorage.removeItem("token");
-    setIsAuthenticated(false);
-  };
+  const provide = useMemo(
+    () => ({
+      isAuthenticated,
+      isAuthenticating,
+      login,
+      logout,
+    }),
+    [isAuthenticated, isAuthenticating, login, logout]
+  );
 
   return (
-    <AuthContext.Provider
-      value={{ isAuthenticated, isAuthenticating, login, logout }}
-    >
-      {children}
-    </AuthContext.Provider>
+    <AuthContext.Provider value={provide}>{children}</AuthContext.Provider>
   );
 };

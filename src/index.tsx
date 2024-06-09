@@ -1,23 +1,31 @@
-import { ApolloProvider } from "@apollo/client";
+// import { ConfigProvider } from "antd";
+import ConfigProvider from "antd/lib/config-provider";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { RouterProvider } from "react-router-dom";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import { router } from "./router";
-import client from "./services/graphql/apollo-client";
+import ApolloClientProvider from "./services/graphql/providers/apollo-client-provider";
+import NotificationProvider from "./services/notification/providers/notification-provider";
 import { AuthProvider } from "./services/providers/auth/auth-provider";
+import { theme } from "./theme";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
+
 root.render(
   <React.StrictMode>
-    <ApolloProvider client={client}>
-      <AuthProvider>
-        <RouterProvider router={router} />
-      </AuthProvider>
-    </ApolloProvider>
+    <NotificationProvider>
+      <ApolloClientProvider>
+        <AuthProvider>
+          <ConfigProvider theme={theme}>
+            <RouterProvider router={router} />
+          </ConfigProvider>
+        </AuthProvider>
+      </ApolloClientProvider>
+    </NotificationProvider>
   </React.StrictMode>
 );
 
