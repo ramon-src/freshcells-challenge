@@ -1,15 +1,31 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+// import { ConfigProvider } from "antd";
+import ConfigProvider from "antd/lib/config-provider";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { RouterProvider } from "react-router-dom";
+import "./index.css";
+import reportWebVitals from "./reportWebVitals";
+import { router } from "./router";
+import { AuthProvider } from "./services/auth/auth-provider";
+import ApolloClientProvider from "./services/graphql/providers/apollo-client-provider";
+import NotificationProvider from "./services/notification/providers/notification-provider";
+import { theme } from "./theme";
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  document.getElementById("root") as HTMLElement
 );
+
 root.render(
   <React.StrictMode>
-    <App />
+    <NotificationProvider>
+      <ApolloClientProvider>
+        <AuthProvider>
+          <ConfigProvider theme={theme}>
+            <RouterProvider router={router} />
+          </ConfigProvider>
+        </AuthProvider>
+      </ApolloClientProvider>
+    </NotificationProvider>
   </React.StrictMode>
 );
 
