@@ -77,7 +77,7 @@ yarn test
 
 **Author:**
 
-Ramon Schmidt - (LinkedIn)[https://www.linkedin.com/in/ramonsrocha/] - ramonroc@gmail.com
+Ramon Schmidt - [LinkedIn](https://www.linkedin.com/in/ramonsrocha/) - ramonroc@gmail.com
 
 **Acknowledgements:**
 
