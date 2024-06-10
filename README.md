@@ -16,11 +16,11 @@ Welcome to the Fresh Cells Challenge Application! This application is built with
 - **TypeScript:** A statically typed superset of JavaScript that adds type-checking capabilities to the language.
 - **Ant Design:** A UI library for React that provides a set of high-quality components and styles.
 - **Apollo Client:** A fully-featured caching GraphQL client for React applications.
+- **Vite:** A build tool that aims to provide a faster and leaner development experience for modern web projects.
 
 **Missing Features:**
 
 - **Use Case with Location:** This feature involves incorporating location-based functionality into the application, such as geolocation or address lookup.
-- **Refactoring to Vite:** The application needs to be refactored to use Vite as the build tool for faster development and better performance.
 - **Internationalization (i18n):** Adding support for multiple languages to make the application accessible to users from different regions.
 
 **Setup:**
