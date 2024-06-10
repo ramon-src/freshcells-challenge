@@ -1,46 +1,84 @@
-# Getting Started with Create React App
+**Fresh Cells Challenge Application**
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to the Fresh Cells Challenge Application! This application is built with React, React Router, React Testing Library, TypeScript, Ant Design, and Apollo Client. It provides features like login and validations, account page, and a notification system.
 
-## Available Scripts
+**Features:**
 
-In the project directory, you can run:
+- **Login and Validations:** Users can log in with their credentials, and the application performs validations to ensure the correct input format.
+- **Account Page:** Once logged in, users can view their account details on a dedicated account page.
+- **Notification:** The application includes a notification system to alert users of errors.
 
-### `yarn start`
+**Stack:**
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- **React:** A JavaScript library for building user interfaces.
+- **React Router:** A routing library for React that enables navigation within the application.
+- **React Testing Library:** A testing utility for React applications that focuses on behavior rather than implementation details.
+- **TypeScript:** A statically typed superset of JavaScript that adds type-checking capabilities to the language.
+- **Ant Design:** A UI library for React that provides a set of high-quality components and styles.
+- **Apollo Client:** A fully-featured caching GraphQL client for React applications.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+**Missing Features:**
 
-### `yarn test`
+- **Use Case with Location:** This feature involves incorporating location-based functionality into the application, such as geolocation or address lookup.
+- **Refactoring to Vite:** The application needs to be refactored to use Vite as the build tool for faster development and better performance.
+- **Internationalization (i18n):** Adding support for multiple languages to make the application accessible to users from different regions.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**Setup:**
 
-### `yarn build`
+1. Clone the repository:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+git clone https://github.com/ramon-src/freshcells-challenge.git
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2. Navigate to the project directory:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+cd freshcells-challenge
+```
 
-### `yarn eject`
+3. Install dependencies:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```bash
+yarn install
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+4. Configure the environment:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Create a `.env` file in the root directory of the project and set the `REACT_APP_GRAPHQL_ENDPOINT` variable to your GraphQL endpoint.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```
+REACT_APP_GRAPHQL_ENDPOINT=http://your-graphql-endpoint.com
+```
 
-## Learn More
+**Running the Application:**
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+To start the application, run:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+yarn start
+```
+
+This command will start the development server and open the application in your default web browser.
+
+**Testing:**
+
+To run tests and generate coverage reports, use:
+
+```bash
+yarn test -- --coverage
+```
+
+To run tests without coverage:
+
+```bash
+yarn test
+```
+
+**Author:**
+
+Ramon Schmidt - (LinkedIn)[https://www.linkedin.com/in/ramonsrocha/] - ramonroc@gmail.com
+
+**Acknowledgements:**
+
+Special thanks to the team at Fresh Cells for the inspiration and support in building this application.
