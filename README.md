@@ -40,15 +40,19 @@ cd freshcells-challenge
 3. Install dependencies:
 
 ```bash
-yarn install
+npm install -g bun
 ```
 
-4. Configure the environment:
+```bash
+bun install
+```
 
-Create a `.env` file in the root directory of the project and set the `REACT_APP_GRAPHQL_ENDPOINT` variable to your GraphQL endpoint.
+1. Configure the environment:
+
+Create a `.env` file in the root directory of the project and set the `VITE_GRAPHQL_ENDPOINT` variable to your GraphQL endpoint.
 
 ```
-REACT_APP_GRAPHQL_ENDPOINT=http://your-graphql-endpoint.com
+VITE_GRAPHQL_ENDPOINT=http://your-graphql-endpoint.com
 ```
 
 **Running the Application:**
@@ -56,7 +60,7 @@ REACT_APP_GRAPHQL_ENDPOINT=http://your-graphql-endpoint.com
 To start the application, run:
 
 ```bash
-yarn start
+bun dev
 ```
 
 This command will start the development server and open the application in your default web browser.
@@ -66,13 +70,13 @@ This command will start the development server and open the application in your 
 To run tests and generate coverage reports, use:
 
 ```bash
-yarn test -- --coverage
+bun run test:cov
 ```
 
 To run tests without coverage:
 
 ```bash
-yarn test
+bun run test
 ```
 
 **Author:**

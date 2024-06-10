@@ -1,0 +1,16 @@
+{
+  "rootDir": ".",
+  "transform": {
+    "^.+\\.tsx?$": "ts-jest"
+  },
+  "testEnvironment": "jsdom",
+  "preset": "ts-jest",
+  "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+  "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"],
+  "setupFilesAfterEnv": ["<rootDir>/src/setupTests.ts"],
+  "testPathIgnorePatterns": ["/node_modules/", "/dist/"],
+  "prettierPath": null,
+  "moduleNameMapper": {
+    "^@/(.*)$": ["<rootDir>/src/$1"]
+  }
+}

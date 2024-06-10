@@ -1,4 +1,3 @@
-// import { ConfigProvider } from "antd";
 import ConfigProvider from "antd/lib/config-provider";
 import React from "react";
 import ReactDOM from "react-dom/client";

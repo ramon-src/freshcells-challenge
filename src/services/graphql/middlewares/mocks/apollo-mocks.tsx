@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import {
   DefaultContext,
   FetchResult,
@@ -7,7 +8,8 @@ import {
   gql,
 } from "@apollo/client";
 
-export const mockForward: NextLink = jest.fn((operation) => {
+// eslint-disable-next-line react-refresh/only-export-components
+export const mockForward: NextLink = jest.fn(() => {
   return new Observable<FetchResult>(() => {});
 });
 
@@ -17,6 +19,7 @@ export const MockQuery = gql`
   }
 `;
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const createMockOperation = function (): Operation {
   let context = {};
   return {
