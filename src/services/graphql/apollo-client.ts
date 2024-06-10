@@ -4,7 +4,7 @@ import authMiddleware from "./middlewares/auth-middleware";
 import createErrorLink from "./middlewares/error-middleware";
 
 const httpLink = new HttpLink({
-  uri: process.env.REACT_APP_GRAPHQL_ENDPOINT,
+  uri: import.meta.env.VITE_GRAPHQL_ENDPOINT,
 });
 
 export const createApolloClient = (

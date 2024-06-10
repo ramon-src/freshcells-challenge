@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import {
   DefaultContext,
   FetchResult,
@@ -37,7 +38,7 @@ describe("authMiddleware", () => {
       value: localStorageMock,
     });
     const mockOperation = createMockOperation();
-    const mockForward: NextLink = jest.fn((operation) => {
+    const mockForward: NextLink = jest.fn(() => {
       return new Observable<FetchResult>(() => {});
     });
 
@@ -60,7 +61,7 @@ describe("authMiddleware", () => {
       value: localStorageMock,
     });
     const mockOperation = createMockOperation();
-    const mockForward: NextLink = jest.fn((operation) => {
+    const mockForward: NextLink = jest.fn(() => {
       return new Observable<FetchResult>(() => {});
     });
 

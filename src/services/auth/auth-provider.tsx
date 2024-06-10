@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import { useMutation } from "@apollo/client";
 import {
   createContext,
@@ -19,10 +20,11 @@ type AuthContextType = {
 const AuthContext = createContext<AuthContextType>({
   isAuthenticated: false,
   isAuthenticating: false,
-  login: async (email: string, password: string) => {},
+  login: async () => {},
   logout: () => {},
 });
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useAuth = (): AuthContextType => useContext(AuthContext);
 
 type AuthProviderProps = {
