@@ -28,7 +28,7 @@ describe("authMiddleware", () => {
     };
   };
 
-  it("should add authorization header if token exists in localStorage", () => {
+  test("should add authorization header if token exists in localStorage", () => {
     const mockToken = "any.bearer.token";
     const localStorageMock = {
       getItem: jest.fn().mockReturnValue(mockToken),
@@ -51,7 +51,7 @@ describe("authMiddleware", () => {
       },
     });
   });
-  it("should not add authorization header if token does not exist in localStorage", () => {
+  test("should not add authorization header if token does not exist in localStorage", () => {
     const mockToken = "";
     const localStorageMock = {
       getItem: jest.fn().mockReturnValue(mockToken),

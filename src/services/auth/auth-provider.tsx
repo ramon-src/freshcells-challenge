@@ -7,7 +7,7 @@ import {
   useMemo,
   useState,
 } from "react";
-import { LOGIN } from "../../graphql/mutations/login";
+import { LOGIN } from "../graphql/mutations/login";
 
 type AuthContextType = {
   isAuthenticated: boolean;
@@ -30,7 +30,7 @@ type AuthProviderProps = {
 };
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
-  const [signIn, { data, loading, error }] = useMutation(LOGIN);
+  const [signIn, { data }] = useMutation(LOGIN);
 
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isAuthenticating, setAuthenticationLoading] = useState(true);

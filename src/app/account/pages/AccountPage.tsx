@@ -1,44 +1,60 @@
 import { useQuery } from "@apollo/client";
+import { Button, Form, Input, Skeleton } from "antd/lib";
 import { useMemo } from "react";
+import Page from "../../../components/Form/Page";
+import { useAuth } from "../../../services/auth/auth-provider";
 import { ACCOUNT } from "../../../services/graphql/queries/account";
 import { LOGGED_USER } from "../../../services/graphql/queries/loggedUser";
-import { useAuth } from "../../../services/providers/auth/auth-provider";
 
 function AccountPage(): React.ReactElement {
   const { logout } = useAuth();
-  const {
-    data: meData,
-    loading: meLoading,
-    error: meError,
-  } = useQuery(LOGGED_USER);
+  const { data: meData, loading: meLoading } = useQuery(LOGGED_USER);
 
   const userId = useMemo(() => meData?.me?.id, [meData]);
 
-  const {
-    data: accountData,
-    loading: accountLoading,
-    error: accountError,
-  } = useQuery(ACCOUNT, {
+  const { data: accountData, loading: accountLoading } = useQuery(ACCOUNT, {
     skip: !userId,
     variables: { id: userId },
   });
 
-  if (meLoading || accountLoading) return <p>Loading...</p>;
-  if (meError) return <p>Error fetching user data: {meError.message}</p>;
-  if (accountError)
-    return <p>Error fetching account data: {accountError.message}</p>;
+  if (meLoading || accountLoading)
+    return (
+      <div data-testid="account-loading">
+        <Skeleton active />
+      </div>
+    );
 
   const { user } = accountData;
 
+  type FieldType = {
+    firstName: string;
+    lastName: string;
+  };
   return (
-    <div>
-      AccountPage
-      <input type="text" readOnly={true} value={user.firstName} />
-      <input type="text" readOnly={true} value={user.lastName} />
-      <button type="button" onClick={() => logout()}>
-        Logout
-      </button>
-    </div>
+    <Page title="My Account">
+      <Form layout="vertical">
+        <Form.Item<FieldType>
+          label="First Name"
+          name="firstName"
+          rules={[{ required: true, message: "Please input first name!" }]}
+          validateTrigger="onChange"
+          initialValue={user?.firstName}
+        >
+          <Input readOnly size="large" />
+        </Form.Item>
+        <Form.Item<FieldType>
+          label="Last Name"
+          name="lastName"
+          rules={[{ required: true, message: "Please input last name!" }]}
+          validateTrigger="onChange"
+          initialValue={user?.lastName}
+        >
+          <Input readOnly size="large" />
+        </Form.Item>
+      </Form>
+
+      <Button onClick={() => logout()}>Logout</Button>
+    </Page>
   );
 }
 

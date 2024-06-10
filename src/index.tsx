@@ -6,9 +6,9 @@ import { RouterProvider } from "react-router-dom";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import { router } from "./router";
+import { AuthProvider } from "./services/auth/auth-provider";
 import ApolloClientProvider from "./services/graphql/providers/apollo-client-provider";
 import NotificationProvider from "./services/notification/providers/notification-provider";
-import { AuthProvider } from "./services/providers/auth/auth-provider";
 import { theme } from "./theme";
 
 const root = ReactDOM.createRoot(

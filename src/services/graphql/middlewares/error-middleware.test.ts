@@ -5,7 +5,7 @@ import createErrorLink from "./error-middleware";
 jest.mock("@apollo/client/link/error");
 
 describe("createErrorLink", () => {
-  it("should call notifier for each GraphQL error", () => {
+  test("should call notifier for each GraphQL error", () => {
     const graphQLErrors = [
       {
         message: "GraphQL error 1",

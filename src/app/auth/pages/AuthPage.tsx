@@ -1,13 +1,10 @@
 import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
-// import { Button, Card, Form, Input, Layout } from "antd";
+import { Card, Form, Input, Layout } from "antd/lib";
 import Button from "antd/lib/button";
-import Card from "antd/lib/card";
-import Form from "antd/lib/form";
-import Input from "antd/lib/input";
-import Layout from "antd/lib/row";
+import useBreakpoint from "antd/lib/grid/hooks/useBreakpoint";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../../services/providers/auth/auth-provider";
+import { useAuth } from "../../../services/auth/auth-provider";
 
 type FieldType = {
   email: string;
@@ -18,6 +15,7 @@ function AuthPage(): React.ReactElement {
   const { isAuthenticated, login, isAuthenticating } = useAuth();
   const [loading, setSubmitLoading] = useState(false);
   const navigate = useNavigate();
+  const screens = useBreakpoint();
 
   const onSubmit = async (values: FieldType) => {
     setSubmitLoading(true);
@@ -31,7 +29,15 @@ function AuthPage(): React.ReactElement {
 
   return (
     <Layout style={styles.authPage}>
-      <Card title="FreshCells Login" style={styles.authCard}>
+      <Card
+        title="FreshCells Login"
+        style={{
+          width: screens.xs ? "90%" : "400px",
+          padding: "20px",
+          boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+          backgroundColor: "#ffffff",
+        }}
+      >
         <Form onFinish={onSubmit} layout="vertical">
           <Form.Item<FieldType>
             label="Email"
@@ -45,7 +51,7 @@ function AuthPage(): React.ReactElement {
             ]}
             validateTrigger="onChange"
           >
-            <Input />
+            <Input placeholder="Input your email" />
           </Form.Item>
 
           <Form.Item<FieldType>
@@ -79,20 +85,13 @@ const styles: Styles = {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    height: "100vh",
-    backgroundColor: "#f0f2f5", // Light gray background
+    minHeight: "100vh",
+    backgroundColor: "#f0f2f5",
   },
   authContainer: {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    width: "100%",
-  },
-  authCard: {
-    width: "400px",
-    padding: "20px",
-    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-    backgroundColor: "#ffffff", // White background
   },
 };
 
